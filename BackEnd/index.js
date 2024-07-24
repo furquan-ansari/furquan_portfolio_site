@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Serve the static HTML file
-app.use(express.static("public"));
+app.use(express.static("FrontEnd"));
 
 // Route to handle form submission
 app.post("/send-email", (req, res) => {
