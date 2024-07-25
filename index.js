@@ -1,6 +1,7 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
+require('dotenv').config(); // To load environment variables from a .env file
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,15 +24,15 @@ app.post("/send-email", (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: "furquanansari274@gmail.com",
-      pass: "gfka woqt vgph vlkh",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
   // Set up email data
   let mailOptions = {
     from: email, // sender address
-    to: "furquanaansari274@gmail.com", // list of receivers
+    to: process.env.RECEIVER_EMAIL, // list of receivers
     subject: subject, // Subject line
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`, // plain text body
   };
