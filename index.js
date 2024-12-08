@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 require('dotenv').config(); // To load environment variables from a .env file
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,8 +40,10 @@ app.post("/send-email", (req, res) => {
   // Send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      console.error(error); // Log the error for debugging
       return res.status(500).send(error.toString());
     }
+    console.log("Message sent: " + info.response); // Log the success response
     res.status(200).send("Message sent successfully");
   });
 });
