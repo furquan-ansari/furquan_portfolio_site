@@ -6,6 +6,7 @@ require('dotenv').config(); // To load environment variables from a .env file
 
 const app = express();
 const port = process.env.PORT || 5000;
+const cors = require("cors");
 
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,6 +14,13 @@ app.use(bodyParser.json());
 
 // Serve the static HTML file
 app.use(express.static("FrontEnd"));
+
+// CORS code:
+app.use(cors({
+  origin: "https://furquan-portfolio-site.onrender.com", // Allow frontend domain
+  methods: "POST",
+  allowedHeaders: ["Content-Type"]
+}));
 
 // Route to handle form submission
 app.post("/send-email", (req, res) => {
