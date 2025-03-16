@@ -2,7 +2,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 require('dotenv').config(); // To load environment variables from a .env file
-const cors = require("cors");
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -10,13 +10,6 @@ const port = process.env.PORT || 5000;
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// Allow requests from your frontend domain
-app.use(cors({
-  origin: "https://furquan-portfolio-site.onrender.com",
-  methods: "POST",
-  allowedHeaders: ["Content-Type"]
-}));
 
 // Serve the static HTML file
 app.use(express.static("FrontEnd"));
